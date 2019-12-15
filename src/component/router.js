@@ -2,6 +2,7 @@ import Vue from "vue"
 import UserList from "./user/UserList";
 import SubjectList from "./subject/SubjectList";
 import WordList from "./word/WordList";
+import Login from "./login/Login";
 import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
@@ -16,6 +17,9 @@ Vue.use(VueRouter);
     },
     {
         path: '/sozler', name: 'sozler',component:WordList
+    },
+    {
+        path: '/login', name: 'login',component:Login
     },
     // {
     //     path: '/', name: 'kullanicilar',
