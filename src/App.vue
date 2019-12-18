@@ -65,7 +65,7 @@
               <b>Menü</b>
             </li>
 
-            <router-link tag="li" to="/" class="list-group-item">
+            <router-link tag="li" to="/kullanicilar" class="list-group-item">
               <a>
                 <i class="glyphicon glyphicon-user"></i>Kullanıcılar
               </a>

@@ -1,3 +1,5 @@
+import axios from "axios"
+
 const state={
     users:[]
 }
@@ -18,8 +20,17 @@ const mutations={ //senkron çalışır
 }
 
 const actions={//asenkron çalışır
-    saveUser({commit},user){ //producta ulaşmak için commit kullanılır.
-
+    listUser({commit},user){ //producta ulaşmak için commit kullanılır.
+        var token="Bearer "+localStorage.token;
+        axios.defaults.headers.common["Authorization"]=token;
+        axios.get("http://localhost:56307/api/AdminUser/GetUserList")
+      .then(function(response){
+          console.log(response);
+        let data = response.body;
+        for (let item in data) {
+        commit("updateUserList", item);
+        }
+      })
     }
 }
 

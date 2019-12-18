@@ -8,9 +8,9 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 
- const routes = [
+  const routes = [
     {
-        path: '/', name: 'kullanicilar',component:UserList
+        path: '/kullanicilar', name: 'kullanicilar',component:UserList
     },
     {
         path: '/konular', name: 'konular',component:SubjectList
@@ -19,7 +19,7 @@ Vue.use(VueRouter);
         path: '/sozler', name: 'sozler',component:WordList
     },
     {
-        path: '/login', name: 'login',component:Login
+        path: '/', name: 'login',component:Login
     },
     // {
     //     path: '/', name: 'kullanicilar',

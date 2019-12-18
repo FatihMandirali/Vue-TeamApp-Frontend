@@ -13,6 +13,7 @@
               class="form-control"
               name="username"
               id="username"
+              v-model="username"
               placeholder="Username"
               autocomplete="off"
             />
@@ -28,6 +29,7 @@
               type="password"
               class="form-control"
               name="password"
+              v-model="password"
               id="password"
               placeholder="Password"
               autocomplete="off"
@@ -35,34 +37,50 @@
           </div>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Giriş yap</button>
+        <button class="btn btn-lg btn-primary btn-block" @click="Login" type="button">Giriş yap</button>
       </form>
     </div>
     <div class="clearfix"></div>
     <br />
     <br />
-    <!--footer-->
-    <div class="site-footer login-footer">
-      <div class="container">
-        <div class="copyright clearfix text-center">
-          <p>
-            <b>Bootflat</b>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="getting-started.html">Getting Started</a>&nbsp;&bull;&nbsp;
-            <a href="index.html">Documentation</a>&nbsp;&bull;&nbsp;
-            <a href="https://github.com/Bootflat/Bootflat.UI.Kit.PSD/archive/master.zip">Free PSD</a>&nbsp;&bull;&nbsp;
-            <a href="colors.html">Color Picker</a>
-          </p>
-          <p>
-            Code licensed under
-            <a
-              href="http://opensource.org/licenses/mit-license.html"
-              target="_blank"
-              rel="external nofollow"
-            >MIT License</a>, documentation under
-            <a href="http://creativecommons.org/licenses/by/3.0/" rel="external nofollow">CC BY 3.0</a>.
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+import {router} from "../router";
+//import {router} from "../../router";
+//Axios.defaults.headers.get["Accepts"]="application/json";
+export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+      token:""
+    };
+  },
+  methods: {
+    Login() {
+      axios
+        .post("http://localhost:56307/api/AdminUser/Login", {
+          userName: this.username,
+          password: this.password
+        })
+        .then(function(response) {
+          console.log(response);
+          if(response.data.processStatus.code==401){
+            alert(response.data.friendlyMessage.description)
+          }else{
+            localStorage.token = response.data.data.token;
+            router.replace("/kullanicilar")
+          }
+        });
+
+      //  Axios.get("http://localhost:56307/api/AdminUser/GetUserList")
+      // .then(function(response){
+      //   console.log(response);
+      // })
+    }
+  }
+};
+</script>
