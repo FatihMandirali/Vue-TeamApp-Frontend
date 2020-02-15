@@ -81,6 +81,12 @@
                 <i class="glyphicon glyphicon-tags"></i>Konular
               </a>
             </router-link>
+
+            <router-link tag="li" to="/konuyorum" class="list-group-item">
+              <a>
+                <i class="glyphicon glyphicon-tags"></i>Konu Yorumlar
+              </a>
+            </router-link>
             <!-- <li class="list-group-item">
               <a href="icons.html">
                 <i class="glyphicon glyphicon-tags"></i>Konular

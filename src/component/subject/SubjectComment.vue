@@ -1,5 +1,5 @@
 <template>
-  <div>
+    <div>
     <div class="panel-heading">
       <h3 class="panel-title">
         <router-link to="/konu/olustur" tag="li" class="btn btn-sucess">
@@ -21,10 +21,7 @@
           <tr v-for="item in subjectList">
             <td>{{item.subject}}</td>
             <td>
-              <button class="btn btn-success btn-sm" @click="subjectDetail(item.id)">İncele</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm" @click="subjectDelete(item.id)">Sil</button>
+              <button class="btn btn-success btn-sm" @click="subjectDetail(item.id)">Yorumları İncele</button>
             </td>
           </tr>
         </tbody>
@@ -47,16 +44,10 @@ export default {
     }
   },
   methods:{
-    subjectDelete(id){
-      store.commit("deleteSubject",id);
-    },
     subjectDetail(id){
-      store.commit("getSubject",id);
-      router.replace("/konudetay/"+id)
+      store.commit("getSubjectComments",id); //Burda Konuya yapılan yorumlar listelenecek istek atılacak
+      router.replace("/konuyorumdetay/"+id) //bu sayfaya gidince liste isteğini yapıştıracak
     },
   }
-};
+}
 </script>
-
-<style scoped>
-</style>

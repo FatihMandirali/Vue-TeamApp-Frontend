@@ -49,7 +49,7 @@
 <script>
 import axios from "axios";
 import {router} from "../router";
-//import {router} from "../../router";
+import {store} from "../../store/store";
 //Axios.defaults.headers.get["Accepts"]="application/json";
 export default {
   data() {
@@ -67,11 +67,12 @@ export default {
           password: this.password
         })
         .then(function(response) {
-          console.log(response);
+          //console.log(response);
           if(response.data.processStatus.code==401){
             alert(response.data.friendlyMessage.description)
           }else{
             localStorage.token = response.data.data.token;
+            store.commit('updateUserList');
             router.replace("/kullanicilar")
           }
         });
